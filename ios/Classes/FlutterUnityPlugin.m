@@ -224,7 +224,9 @@ NSMutableArray * gViews;
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
     UfwLoad();
-    gViews = [[NSMutableArray alloc] init];
+    if(gViews == nil) {
+        gViews = [[NSMutableArray alloc] init];
+    }
     FlutterUnityViewFactory * viewFactory = [[FlutterUnityViewFactory alloc] initWithMessenger: [registrar messenger]];
     [registrar registerViewFactory: viewFactory withId: @"unity_view"];
 }

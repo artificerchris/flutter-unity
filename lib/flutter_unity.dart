@@ -39,6 +39,11 @@ class UnityViewController {
     _channel.invokeMethod('resume');
   }
 
+  void dispose() async {
+    await _channel?.invokeMethod('dispose');
+    _channel?.setMethodCallHandler(null);
+  }
+
   void send(
     String gameObjectName,
     String methodName,
@@ -95,10 +100,6 @@ class _UnityViewState extends State<UnityView> {
 
   @override
   void dispose() {
-    if (defaultTargetPlatform == TargetPlatform.iOS) {
-      controller?._channel?.invokeMethod('dispose');
-    }
-    controller?._channel?.setMethodCallHandler(null);
     super.dispose();
   }
 

@@ -57,6 +57,9 @@ public class FlutterUnityView implements PlatformView, MethodChannel.MethodCallH
                 plugin.getPlayer().resume();
                 result.success(null);
                 break;
+            case "dispose":
+                dispose();
+                break;
             case "send":
                 try {
                     JSONObject jsonObject = new JSONObject();
